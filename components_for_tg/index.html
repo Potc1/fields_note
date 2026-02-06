@@ -1,0 +1,32 @@
+
+<html>
+    <body>
+        <div id="temp">you</div>
+    </body>
+</html>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script type="module">
+    let tg = window.Telegram.WebApp;
+    //console.log(tg.initDataUnsafe.user.id)
+    function sendMessageToStreamlitClient(type, data) {
+        var outData = Object.assign({
+          isStreamlitMessage: true,
+          type: type,
+        }, data);
+        window.parent.postMessage(outData, "*");
+      }
+    function sendDataToPython(data) {
+        sendMessageToStreamlitClient("streamlit:setComponentValue", data);
+      }
+    function init() {
+        sendMessageToStreamlitClient("streamlit:componentReady", { apiVersion: 1 });
+      }
+    function onDataFromPython(event) {
+      if (event.data.type !== "streamlit:render") return;
+      // Access data sent from the Streamlit app here, if needed
+    }
+    window.addEventListener("message", onDataFromPython);
+    init();
+    sendDataToPython({value: 130, dataType: "json" });
+    //tg.initDataUnsafe.user.id
+</script>
