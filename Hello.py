@@ -1,5 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
+from streamlit.components.v1 import html
+from pr5 import CheckLogin
 
 st.set_page_config(
     page_title="Hello",
@@ -40,5 +42,13 @@ id_tg = components.declare_component(
     "tg_id",
     path="./components_for_tg"
 )
-user_id = id_tg()
-st.markdown(user_id)
+
+#st.markdown(user_id)
+#st.write(st.query_params['id'] )
+try:
+    if CheckLogin(st.query_params['id'], st.query_params['remote'])[1] == True:
+        user_id = id_tg(ids=st.query_params['id'], remote=st.query_params['remote'], blocked=False)
+    else:
+        user_id = id_tg(blocked=True)
+except Exception as e:
+    print(f'Error occupted {e}')

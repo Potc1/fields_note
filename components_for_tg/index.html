@@ -23,10 +23,25 @@
       }
     function onDataFromPython(event) {
       if (event.data.type !== "streamlit:render") return;
+      console.log(event.data.args)
+      localStorage.setItem('blocked', event.data.args.blocked)
+      setToLocalStorage(event.data.args.ids, event.data.args.remote)
+
       // Access data sent from the Streamlit app here, if needed
     }
+    function setToLocalStorage(user_id, remote){
+      const params = new URLSearchParams(window.location.search);
+      console.log('id', localStorage.getItem('ids'))
+      if (localStorage.getItem('ids')){
+        console.log("ids is setted")
+        return
+      }
+      localStorage.setItem('ids', user_id);
+      localStorage.setItem('remote', remote);
+    }
+    
     window.addEventListener("message", onDataFromPython);
     init();
-    sendDataToPython({value: 130, dataType: "json" });
+    sendDataToPython({value: localStorage.getItem('ids'), dataType: "json" });
     //tg.initDataUnsafe.user.id
 </script>

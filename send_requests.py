@@ -63,7 +63,3 @@ def createSeason(profile, name):
 #print(SetProcessing(y, "5775480864", data.name))
 #print(reqCreateField(data, "5775480864"))
 #print(createSeason("5775480864", "2026"))
-a = getSeason("5775480864")
-data = json.loads(a)
-for i in data:
-    print(i)

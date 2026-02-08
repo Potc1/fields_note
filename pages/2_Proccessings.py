@@ -5,6 +5,7 @@ from send_requests import getSeason
 from send_requests import createSeason
 from send_requests import SetProcessing
 from pr5 import Processing
+from pr5 import decodeId
 from Hello import getUserId
 
 st.set_page_config(page_title="Обработки", page_icon="🚜")
@@ -35,7 +36,17 @@ def getSeasonsArray(user_id):
     return seasons
 
 
-user_id = getUserId()
+encoded_user_id = getUserId()
+print(f"The user  {encoded_user_id} is on page field")
+user_id = ""
+try:
+    user_id = decodeId(encoded_user_id)
+    if len(user_id) == 0:
+        st.write('blocked')
+    else:
+        st.write(user_id)
+except Exception as e:
+    print(f"Error occuped {e}")
     
 #5775480864 - my profile id
 st.markdown("# Обработки 🚜")
@@ -60,20 +71,23 @@ with st.expander("Добавить обработку"):
     with season_column:
         season_option = st.selectbox("Выберите сезон:", seasons)
     if button_column.button("Добавить"):
-        nothing_column.markdown(f"Data is {procc_name}, {procc_cost}, {procc_norma}, {field_option}, {season_option}")
-        user_proc = Processing(procc_name)
-        if season_option != "Создайте сезон" or field_option != "Cоздайте поле":
-            user_proc.setField(field_option)
-            user_proc.setHerbicide("", procc_norma, procc_cost)
-            user_proc.season = season_option
-            SetProcessing(user_proc, user_id, user_proc.field)
+        #nothing_column.markdown(f"Data is {procc_name}, {procc_cost}, {procc_norma}, {field_option}, {season_option}")
+        if len(user_id) != 0:
+            user_proc = Processing(procc_name)
+            if season_option != "Создайте сезон" and field_option != "Cоздайте поле":
+                user_proc.setField(field_option)
+                user_proc.setHerbicide("", procc_norma, procc_cost)
+                user_proc.season = season_option
+                SetProcessing(user_proc, user_id, user_proc.field)
+            else:
+                nothing_column.markdown("У вас нет сезона/поля добавьте его/их")
             #nothing_column.markdown("Создайте сезон")
 
 with st.expander("Введите название сезона"):
     new_season_name = st.text_input("Введите название сезона", "Пример")
     b1, b2, b3, b4 = st.columns(4)
     if b4.button("Подтвердить"):
-        if new_season_name != "Пример":
+        if new_season_name != "Пример" and len(user_id) != 0:
             createSeason(user_id, new_season_name)
             seasons = tuple(getSeasonsArray(user_id))
 
