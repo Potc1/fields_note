@@ -1,0 +1,37 @@
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <div class = "navbar">
+        <h1>Главная</h1>
+        <div class="header-line"></div>
+        <div class = 'navbar-menu'>
+            <div>
+                <button onclick="window.location.href=`${link}`" class="main-btn">Войти</button>
+            </div>
+            <p id="id_text">
+          </div>
+        </div>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+        <script src="profile.js"></script>   
+        <script>
+            let tg = window.Telegram.WebApp;
+            let ids = tg?.initDataUnsafe?.user?.id || 2022
+            console.log(ids)
+            let id = encodeID()
+            let remote = encodeHashId()
+            let link = `https://fastapi.tiangolo.com/tutorial/body/?id=${id}&remote=${remote}`
+        </script>
+      </div>
+    </body>
+</html>

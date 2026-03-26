@@ -4,9 +4,8 @@
         <div id="temp">you</div>
     </body>
 </html>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script type="module">
-    let tg = window.Telegram.WebApp;
+    //let tg = window.Telegram.WebApp;
     //console.log(tg.initDataUnsafe.user.id)
     function sendMessageToStreamlitClient(type, data) {
         var outData = Object.assign({
@@ -35,9 +34,11 @@
       if (localStorage.getItem('ids')){
         console.log("ids is setted")
         return
+      } 
+      else{
+        localStorage.setItem('ids', user_id);
+        localStorage.setItem('remote', remote);
       }
-      localStorage.setItem('ids', user_id);
-      localStorage.setItem('remote', remote);
     }
     
     window.addEventListener("message", onDataFromPython);

@@ -24,15 +24,21 @@ try:
         st.write(user_id)
 except Exception as e:
     print(f"Error occuped {e}")
+
+if 'field_name' not in st.session_state:
+    st.session_state['field_name'] = ''
+if 'field_area' not in st.session_state:
+    st.session_state['field_area'] = 0
+
 with st.expander("Введите данные поля"):
-    field_name = st.text_input("Введите название поля", "Поле№1")
+    st.session_state['field_name'] = st.text_input("Введите название поля", "Поле№1")
     #left.text_input("Введите название поля", "Поле№1")
-    field_area = st.number_input("Введите площадь поля")
+    st.session_state['field_area'] = st.number_input("Введите площадь поля")
     #right.number_input("Введите площадь поля")
     b1, b2, b3, b4 = st.columns(4)
     if b4.button("Подтвердить"):
         if (len(user_id) != 0):
-            b1.markdown(f"Name is {field_name}")
-            b2.markdown(f"Area is {field_area}")
-            field = Field(field_area, field_name)
+            b1.markdown(f"Name is {st.session_state['field_name']}")
+            b2.markdown(f"Area is {st.session_state['field_area']}")
+            field = Field(st.session_state['field_area'], st.session_state['field_name'])
             reqCreateField(field ,user_id)

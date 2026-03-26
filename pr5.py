@@ -60,5 +60,7 @@ def decodeId(id):
     prepared_id = id.encode('utf-8') 
     b64_decode_result = "".join([chr(i) for i in list(base64.standard_b64decode(prepared_id))])
     return b64_decode_result
-#print(CheckLogin("dXNlcg==", "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb"))
-#print(decodeId("dXNlcg=="))
+#print(CheckLogin("NTc3NTQ4MDg2NA==", "fa3e3fd93fadb2a5c74f9ef37cd827a315cc81a4937ad5e1a6fee2002a57ac07"))
+#print(decodeId("NTc3NTQ4MDg2NA=="))
+#encoded_id = "5775480864".encode('utf-8')
+#print(hashlib.sha256(encoded_id).hexdigest())

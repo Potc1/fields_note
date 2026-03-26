@@ -10,6 +10,7 @@ from pr5 import Field
 from pr5 import Processing
 import json
 
+#https://script.google.com/macros/s/AKfycbw03GGQTg677UR5EThxoDB9mHqxeFygMBrW1KN2vII_ARuQ-WG1uG70ztodLW9mR71nlw/exec
 URL = "https://script.google.com/macros/s/AKfycbw03GGQTg677UR5EThxoDB9mHqxeFygMBrW1KN2vII_ARuQ-WG1uG70ztodLW9mR71nlw/exec";
 
 st_accept = "text/html" # говорим веб-серверу, 
@@ -49,17 +50,26 @@ def SetProcessing(Processing, profile, field_name):
 
 # пропуск для получения всех полей
 def getField(name, profile):
+    print(f"{URL}?action=getField&profile={profile}&name={name}")
     return try_request(f"{URL}?action=getField&profile={profile}&name={name}", headers).text 
 
-def CreateReport(profile, name, flag):
-    return try_request(f"{URL}?action=CreateReport&profile={profile}&name={name}&flag={flag}", headers);
+def CreateReport(profile, season ,name, flag, url_folder):
+    print(f"{URL}?action=CreateReport&profile={profile}&season={season}&field_name={name}&flag={flag}")
+    return try_request(f"{URL}?action=CreateReport&profile={profile}&season={season}&field_name={name}&flag={flag}&folder={url_folder}", headers).text;
 
 def getSeason(profile):
     return try_request(f"{URL}?action=getSeason&profile={profile}", headers).text
 
-def createSeason(profile, name):
-    return try_request(f"{URL}?action=setSeasons&profile={profile}&season={name}", headers).text
+def createSeason(profile, name, folderUrl):
+    return try_request(f"{URL}?action=setSeasons&profile={profile}&season={name}&folder={folderUrl}", headers).text
+
+def getReport(url_folder):
+    return try_request(f"{URL}?action=getReportURL&folder={url_folder}", headers).text;
+    
 #print(CreateReport("5775480864", "djs", "True").text)
 #print(SetProcessing(y, "5775480864", data.name))
 #print(reqCreateField(data, "5775480864"))
-#print(createSeason("5775480864", "2026"))
+#print(createSeason("5775480864", "2028"))
+#print(CreateReport("5775480864", "2025","Поле№199", "False", '1qRN7IzmYIn3fJnuWRTj5bVpe9QJPepDw'))
+#print(getField("", "user"))
+#print(requests.get("https://drive.google.com/file/d/1YS6mXY66pRK54ybaac7Z8QNofLryq5TN/view?usp=sharing").text)
