@@ -10,7 +10,7 @@ from pr5 import Field
 from pr5 import Processing
 import json
 
-#https://script.google.com/macros/s/AKfycbw03GGQTg677UR5EThxoDB9mHqxeFygMBrW1KN2vII_ARuQ-WG1uG70ztodLW9mR71nlw/exec
+
 URL = "https://script.google.com/macros/s/AKfycbw03GGQTg677UR5EThxoDB9mHqxeFygMBrW1KN2vII_ARuQ-WG1uG70ztodLW9mR71nlw/exec";
 
 st_accept = "text/html" # говорим веб-серверу, 
