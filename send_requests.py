@@ -54,7 +54,7 @@ def getField(name, profile):
     return try_request(f"{URL}?action=getField&profile={profile}&name={name}", headers).text 
 
 def CreateReport(profile, season ,name, flag, url_folder):
-    print(f"{URL}?action=CreateReport&profile={profile}&season={season}&field_name={name}&flag={flag}")
+    #print(f"{URL}?action=CreateReport&profile={profile}&season={season}&field_name={name}&flag={flag}")
     return try_request(f"{URL}?action=CreateReport&profile={profile}&season={season}&field_name={name}&flag={flag}&folder={url_folder}", headers).text;
 
 def getSeason(profile):
