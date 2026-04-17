@@ -4,7 +4,7 @@ from streamlit.components.v1 import html
 from pr5 import CheckLogin
 
 st.set_page_config(
-    page_title="Hello",
+    page_title="Hello!",
     page_icon="👋",
 )
 def getUserId():
