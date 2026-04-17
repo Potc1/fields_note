@@ -42,4 +42,4 @@ jobs:
           
       - name: Deploy to server
         run: |
-          ssh  ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd var/www && git pull"
+          ssh  ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} -i ${{ secrets.SERVER_SSH_KEY }}  "cd var/www && git pull"
