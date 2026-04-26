@@ -3,7 +3,7 @@ import hashlib
 import base64
 
 
-KEYWORD = 'grac'
+KEYWORD = 'grac!'
 
 class Field():
     def __init__(self, area, name):
